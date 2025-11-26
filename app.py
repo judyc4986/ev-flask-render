@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
@@ -24,24 +23,26 @@ def home():
 @app.route("/ev_registrations", methods=["GET", "POST"])
 def ev_registrations():
     result = None
+    x_value = None
     if request.method == "POST":
         try:
-            x = float(request.form["x"])
-            result = ev_registrations_formula(x)
+            x_value = float(request.form["x"])
+            result = ev_registrations_formula(x_value)
         except:
             result = "Invalid input."
-    return render_template("ev_registrations.html", result=result)
+    return render_template("ev_registrations.html", result=result, x_value=x_value)
 
 @app.route("/adoption_rate", methods=["GET", "POST"])
 def adoption_rate():
     result = None
+    x_value = None
     if request.method == "POST":
         try:
-            x = float(request.form["x"])
-            result = adoption_rate_formula(x)
+            x_value = float(request.form["x"])
+            result = adoption_rate_formula(x_value)
         except:
             result = "Invalid input."
-    return render_template("adoption_rate.html", result=result)
+    return render_template("adoption_rate.html", result=result, x_value=x_value)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
