@@ -24,7 +24,7 @@ def adoption_rate_formula(x: float) -> float:
 # ================================
 @app.route("/")
 def home():
-    return render_template("home.html")
+    return "<a href='/ev_registrations'>EV Registrations Model</a><br><a href='/adoption_rate'>Adoption Rate Model</a>"
 
 @app.route("/ev_registrations", methods=["GET", "POST"])
 def ev_registrations():
@@ -33,39 +33,29 @@ def ev_registrations():
 
     if request.method == "POST":
         try:
-            x_value = float(request.form["x"])
+            x_value = float(request.form.get("x"))
             result = ev_registrations_formula(x_value)
-        except:
-            result = "Invalid input."
+        except Exception as e:
+            result = f"Error: {e}"
 
-    return render_template(
-        "ev_registrations.html",
-        result=result,
-        x_value=x_value
-    )
-
+    return render_template("ev_registrations.html", result=result, x_value=x_value)
 
 @app.route("/adoption_rate", methods=["GET", "POST"])
 def adoption_rate():
-    # ALWAYS PASS DEFAULT VALUES
     result = None
     x_value = None
 
     if request.method == "POST":
         try:
-            x_value = float(request.form["x"])
+            x_value = float(request.form.get("x"))
             result = adoption_rate_formula(x_value)
-        except:
-            result = "Invalid input."
+        except Exception as e:
+            result = f"Error: {e}"
 
-    return render_template(
-        "adoption_rate.html",
-        result=result,
-        x_value=x_value
-    )
+    return render_template("adoption_rate.html", result=result, x_value=x_value)
 
 # ================================
-# DEBUG LOCAL RUN
+# LOCAL RUN
 # ================================
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5001, debug=True)
