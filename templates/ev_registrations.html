@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,14 +5,15 @@
 </head>
 <body>
     <h1>EV Registrations Best-Fit Model</h1>
+
     <form method="POST">
         <label>Enter x (Superchargers):</label>
         <input type="number" step="0.01" name="x" required>
         <button type="submit">Calculate</button>
     </form>
 
-    {% if result is not None %}
-        <p>Result: {{ result }}</p>
+    {% if result is not none %}
+        <p>Result (y) = {{ result }}</p>
     {% endif %}
 
     <br><a href="/">Back</a>
