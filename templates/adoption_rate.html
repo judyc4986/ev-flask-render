@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Adoption Rate Model</title>
+</head>
+<body>
+    <h1>Adoption Rate Best-Fit Model</h1>
+    <form method="POST">
+        <label>Enter x (Superchargers):</label>
+        <input type="number" step="0.01" name="x" required>
+        <button type="submit">Calculate</button>
+    </form>
+
+    {% if result is not None %}
+        <p>Result: {{ result }}</p>
+    {% endif %}
+
+    <br><a href="/">Back</a>
+</body>
+</html>
