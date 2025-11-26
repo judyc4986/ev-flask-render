@@ -28,7 +28,6 @@ def home():
 
 @app.route("/ev_registrations", methods=["GET", "POST"])
 def ev_registrations():
-    # ALWAYS PASS DEFAULT VALUES
     result = None
     x_value = None
 
@@ -39,12 +38,12 @@ def ev_registrations():
         except:
             result = "Invalid input."
 
-    # ALWAYS pass BOTH variables to template
     return render_template(
         "ev_registrations.html",
         result=result,
         x_value=x_value
     )
+
 
 @app.route("/adoption_rate", methods=["GET", "POST"])
 def adoption_rate():
